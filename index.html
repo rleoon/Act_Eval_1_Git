@@ -184,10 +184,28 @@ function addTask() {
     // Rama "eliminar"
     
     // Rama "editar"
-    function editSelected() {
-      
-      
-    }
+function editSelected() {
+  if (selectedId === null) {
+    setStatus("Selecciona una tarea primero", "danger");
+    return;
+  }
+  
+  const task = tasks.find(t => t.id === selectedId);
+  if (!task) return;
+  
+  const newText = prompt("Editar tarea:", task.text);
+  if (newText === null) return; // cancelado
+  
+  const trimmed = newText.trim();
+  if (!trimmed) {
+    setStatus("No se puede guardar tarea vacía", "danger");
+    return;
+  }
+  
+  task.text = trimmed;
+  render();
+  setStatus("Tarea editada", "ok");
+}
 
     // =========================
     // Inicio
