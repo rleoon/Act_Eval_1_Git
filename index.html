@@ -182,7 +182,18 @@ function addTask() {
 }
 
     // Rama "eliminar"
-    
+function deleteSelected() {
+  if (selectedId === null) {
+    setStatus("Selecciona una tarea primero", "danger");
+    return;
+  }
+  if (!confirm("¿Eliminar esta tarea?")) return;
+  
+  tasks = tasks.filter(t => t.id !== selectedId);
+  selectedId = null;
+  render();
+  setStatus("Tarea eliminada", "ok");
+}
     // Rama "editar"
     function editSelected() {
       
